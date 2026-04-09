@@ -20,6 +20,7 @@ Common vectors include:
 
 | Date | Name | Ecosystem | Impact |
 |------|------|-----------|--------|
+| Apr 2026 | [GlassWorm Native — Zig Dropper IDE Mass-Infection](./attacks/2026-04-glassworm-zig-dropper.md) | OpenVSX / VS Code / Cursor / Windsurf / VSCodium / Positron | Trojanized WakaTime extension; Zig-compiled native .node dropper silently infects all compatible IDEs; second-stage GlassWorm RAT with Solana C2 |
 | Apr 2026 | [@velora-dex/sdk — Registry-Only npm Backdoor, macOS launchctl Persistence](./attacks/2026-04-velora-dex-sdk-backdoor.md) | npm | Import-time execution (no postinstall hook); macOS-only binary via launchctl zsh.profiler; arch-aware ARM64/Intel delivery; C2 89.36.224.5; DeFi toolkit targeting crypto keys |
 | Mar 2026 | [axios npm Compromise — Maintainer Account Hijacked, Cross-Platform RAT Deployed](./attacks/2026-03-axios-npm-rat.md) | npm | ~100M weekly downloads; jasonsaayman account hijacked; axios@1.14.1 & 0.30.4 inject plain-crypto-js dropper; cross-platform RAT (macOS/Windows/Linux); 3h exposure |
 | Mar 2026 | [IoliteLabs Solidity VSCode Extensions — Dormant Publisher Backdoor](./attacks/2026-03-iolitelabs-vscode-backdoor.md) | VS Code Marketplace | 27,500 installs; dormant 8-year publisher account hijacked; multi-stage backdoor in pako dependency; Chrome-impersonation DLL (Windows) + LaunchAgent (macOS) |
@@ -69,6 +70,7 @@ Common vectors include:
 ├── CONTRIBUTING.md                  ← How to add a new attack entry
 ├── resources.md                     ← Detection tools, references, further reading
 └── attacks/
+    ├── 2026-04-glassworm-zig-dropper.md
     ├── 2026-04-velora-dex-sdk-backdoor.md
     ├── 2026-03-axios-npm-rat.md
     ├── 2026-03-iolitelabs-vscode-backdoor.md
