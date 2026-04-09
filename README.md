@@ -1,4 +1,4 @@
-# 🔐 Supply Chain Attacks — Learning Repository
+# Supply Chain Attacks — Learning Repository
 
 A living reference for tracking, understanding, and defending against real-world software supply chain attacks. Updated as new incidents are disclosed.
 
