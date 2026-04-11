@@ -52,6 +52,7 @@ Common vectors include:
 | Dec 2025 | [NeoShadow — MSBuild & Blockchain npm Backdoor Campaign](./attacks/2025-12-neoshadow-npm.md) | npm | Typosquatting; MSBuild LOLbin + ChaCha20/Curve25519 C2; 0 VirusTotal detections on Wave 2 binary; blockchain-linked C2 resilience |
 | Nov 2025 | [Shai-Hulud Worm Wave 2](./attacks/2025-late-shai-hulud-worm.md) | npm, GitHub, OpenVSX | 621 packages, 25K+ repos, 14K secrets; Pwn Request via asyncapi |
 | Sep 2025 | [The Great npm Heist](./attacks/2025-09-great-npm-heist.md) | npm | 18 foundational packages (2B+ weekly DLs); browser crypto hijacking |
+| Sep 2025 | [GhostAction Campaign — CI/CD Secret Theft via Malicious Workflows](./attacks/2025-09-ghostaction-campaign.md) | GitHub Actions | 327 accounts compromised; 817 repos; 3,325 secrets (npm/PyPI/DockerHub/AWS) exfiltrated via fake "security" workflow |
 | Sep 2025 | [Shai-Hulud Worm Wave 1](./attacks/2025-late-shai-hulud-worm.md) | npm | 187+ packages; TruffleHog-validated credential theft; $50M crypto stolen |
 | Aug 2025 | [NX Build System Compromise](./attacks/2025-08-nx-build-system.md) | npm, VS Code | 1.4K+ devs; wallets + tokens stolen via postinstall + IDE auto-update |
 | Aug 2025 | [Info-Stealer Campaign](./attacks/2025-08-infostealer-campaign.md) | npm | Chrome credential theft via 8 fake React/Solana packages |
@@ -102,6 +103,7 @@ Common vectors include:
     ├── 2025-12-neoshadow-npm.md
     ├── 2025-late-shai-hulud-worm.md
     ├── 2025-09-great-npm-heist.md
+    ├── 2025-09-ghostaction-campaign.md
     ├── 2025-08-nx-build-system.md
     ├── 2025-08-infostealer-campaign.md
     ├── 2025-07-is-package-compromise.md
