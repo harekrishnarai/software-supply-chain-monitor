@@ -20,6 +20,11 @@ Common vectors include:
 
 | Date | Name | Ecosystem | Impact |
 |------|------|-----------|--------|
+| Apr 2026 | [GPT-Proxy Backdoor — kube-health-tools & kube-node-health](./attacks/2026-04-gpt-proxy-kube-health-backdoor.md) | npm / PyPI | Native binary droppers; Go RAT with Chisel reverse tunnels; OpenAI-compatible LLM proxy routes AI traffic through compromised servers to Chinese resellers; self-deleting |
+| Apr 2026 | [TeamPCP xinference PyPI Compromise — Two-Stage Credential Stealer](./attacks/2026-04-xinference-pypi-teampcp.md) | PyPI | xinference 2.6.0–2.6.2; `__init__.py` injection; exfil to `whereisitat.lucyatemysuperbox.space`; SSH keys, cloud creds, Kubernetes tokens, crypto wallets; TeamPCP attribution |
+| Apr 2026 | [CanisterSprawl — pgserve npm Compromise](./attacks/2026-04-pgserve-npm-canistersprawl.md) | npm | pgserve 1.1.11–1.1.13; 1,143-line postinstall worm; RSA-4096+AES-256 encryption; ICP blockchain canister exfil (untakedownable); self-propagates to all publishable npm & PyPI packages |
+| Apr 2026 | [prt-scan — AI-Augmented GitHub Actions Credential Theft Campaign](./attacks/2026-04-prt-scan-github-actions.md) | GitHub Actions / npm | 6 attacker accounts; 500+ malicious PRs; pull_request_target exploitation; 5-phase CI secret theft; AI-generated language-aware payloads; npm packages backdoored |
+| Apr 2026 | [Strapi CMS npm Typosquats — Redis/PostgreSQL RCE, Docker Escape, Persistent Implant](./attacks/2026-04-strapi-npm-typosquats.md) | npm | 36 fake Strapi plugins; 4 sock-puppet accounts; 8-stage payload evolution: Redis RCE → Docker escape → DB exploitation → persistent implant targeting crypto exchange |
 | Apr 2026 | [GlassWorm Native — Zig Dropper IDE Mass-Infection](./attacks/2026-04-glassworm-zig-dropper.md) | OpenVSX / VS Code / Cursor / Windsurf / VSCodium / Positron | Trojanized WakaTime extension; Zig-compiled native .node dropper silently infects all compatible IDEs; second-stage GlassWorm RAT with Solana C2 |
 | Apr 2026 | [@velora-dex/sdk — Registry-Only npm Backdoor, macOS launchctl Persistence](./attacks/2026-04-velora-dex-sdk-backdoor.md) | npm | Import-time execution (no postinstall hook); macOS-only binary via launchctl zsh.profiler; arch-aware ARM64/Intel delivery; C2 89.36.224.5; DeFi toolkit targeting crypto keys |
 | Mar 2026 | [axios npm Compromise — Maintainer Account Hijacked, Cross-Platform RAT Deployed](./attacks/2026-03-axios-npm-rat.md) | npm | ~100M weekly downloads; jasonsaayman account hijacked; axios@1.14.1 & 0.30.4 inject plain-crypto-js dropper; cross-platform RAT (macOS/Windows/Linux); 3h exposure |
@@ -51,6 +56,8 @@ Common vectors include:
 | Dec 2025 | [Maven Central Jackson Typosquatting — First Sophisticated Malware on Maven Central](./attacks/2025-12-maven-central-jackson-typosquat.md) | Maven Central | org. vs com. namespace typosquat of jackson-databind; Spring Boot autoconfiguration auto-exec; AES-encrypted C2; Windows svchosts.exe + macOS RAT; LLM prompt injection evasion; 1.5h exposure |
 | Dec 2025 | [NeoShadow — MSBuild & Blockchain npm Backdoor Campaign](./attacks/2025-12-neoshadow-npm.md) | npm | Typosquatting; MSBuild LOLbin + ChaCha20/Curve25519 C2; 0 VirusTotal detections on Wave 2 binary; blockchain-linked C2 resilience |
 | Nov 2025 | [Shai-Hulud Worm Wave 2](./attacks/2025-late-shai-hulud-worm.md) | npm, GitHub, OpenVSX | 621 packages, 25K+ repos, 14K secrets; Pwn Request via asyncapi |
+| Sep 2025 | [chalk / debug / color npm Cryptostealer — Phished Contributor, 2.6B Weekly Downloads](./attacks/2025-09-chalk-debug-npm-cryptostealer.md) | npm | 18 packages + duckdb follow-up; single contributor phished; browser crypto hijacking across 5 blockchains; <1h exposure for most |
+| Oct 2025 | [postmark-mcp — First Confirmed Malicious MCP Server on npm](./attacks/2025-10-postmark-mcp-bcc-injection.md) | npm / MCP | Typosquatted Postmark MCP server; 15 clean versions before silent BCC injection; intercepts AI-agent-sent security emails |
 | Sep 2025 | [The Great npm Heist](./attacks/2025-09-great-npm-heist.md) | npm | 18 foundational packages (2B+ weekly DLs); browser crypto hijacking |
 | Sep 2025 | [GhostAction Campaign — CI/CD Secret Theft via Malicious Workflows](./attacks/2025-09-ghostaction-campaign.md) | GitHub Actions | 327 accounts compromised; 817 repos; 3,325 secrets (npm/PyPI/DockerHub/AWS) exfiltrated via fake "security" workflow |
 | Sep 2025 | [Shai-Hulud Worm Wave 1](./attacks/2025-late-shai-hulud-worm.md) | npm | 187+ packages; TruffleHog-validated credential theft; $50M crypto stolen |
@@ -71,6 +78,11 @@ Common vectors include:
 ├── CONTRIBUTING.md                  ← How to add a new attack entry
 ├── resources.md                     ← Detection tools, references, further reading
 └── attacks/
+    ├── 2026-04-gpt-proxy-kube-health-backdoor.md
+    ├── 2026-04-xinference-pypi-teampcp.md
+    ├── 2026-04-pgserve-npm-canistersprawl.md
+    ├── 2026-04-prt-scan-github-actions.md
+    ├── 2026-04-strapi-npm-typosquats.md
     ├── 2026-04-glassworm-zig-dropper.md
     ├── 2026-04-velora-dex-sdk-backdoor.md
     ├── 2026-03-axios-npm-rat.md
@@ -101,6 +113,8 @@ Common vectors include:
     ├── 2026-01-gone-phishin-npm-phishing.md
     ├── 2025-12-maven-central-jackson-typosquat.md
     ├── 2025-12-neoshadow-npm.md
+    ├── 2025-10-postmark-mcp-bcc-injection.md
+    ├── 2025-09-chalk-debug-npm-cryptostealer.md
     ├── 2025-late-shai-hulud-worm.md
     ├── 2025-09-great-npm-heist.md
     ├── 2025-09-ghostaction-campaign.md
