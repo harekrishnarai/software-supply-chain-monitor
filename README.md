@@ -20,6 +20,9 @@ Common vectors include:
 
 | Date | Name | Ecosystem | Impact |
 |------|------|-----------|--------|
+| Apr 2026 | [elementary-data PyPI & GHCR Compromise — GitHub Actions Script Injection Forges Signed Release](./attacks/2026-04-elementary-data-pypi-ghcr.md) | PyPI / GHCR / GitHub Actions | `elementary-data==0.23.3` + `:latest` GHCR image; PR comment script injection → GITHUB_TOKEN abuse → forged signed release commit; `.pth` fires on every Python invocation; 3-stage XOR credential harvester; AWS Secrets Manager live API exfil; C2 `skyhanni.cloud` |
+| Apr 2026 | [Bitwarden CLI Shai-Hulud Third Coming — MCP-Aware Credential Worm via Compromised CI/CD](./attacks/2026-04-bitwarden-cli-shai-hulud.md) | npm | `@bitwarden/cli@2026.4.0`; CI/CD pipeline compromise bypasses trusted publishing; steals Claude Code auth tokens + MCP server configs; cloud secret manager harvest; Shai-Hulud worm propagation; same TeamPCP C2 as Checkmarx KICS Docker attack |
+| Apr 2026 | [Checkmarx KICS Second Compromise — Docker Hub Images, VS Code Extensions, GitHub Actions Worm](./attacks/2026-04-checkmarx-kics-docker-vscode.md) | Docker Hub / VS Code / GitHub Actions / npm | TeamPCP's second Checkmarx attack; malicious KICS images exfiltrate IaC scan secrets; mcpAddon.js via backdated orphaned GitHub commit; GitHub Actions `toJSON(secrets)` heist; npm worm propagation; ~84-min Docker exposure window |
 | Apr 2026 | [GPT-Proxy Backdoor — kube-health-tools & kube-node-health](./attacks/2026-04-gpt-proxy-kube-health-backdoor.md) | npm / PyPI | Native binary droppers; Go RAT with Chisel reverse tunnels; OpenAI-compatible LLM proxy routes AI traffic through compromised servers to Chinese resellers; self-deleting |
 | Apr 2026 | [TeamPCP xinference PyPI Compromise — Two-Stage Credential Stealer](./attacks/2026-04-xinference-pypi-teampcp.md) | PyPI | xinference 2.6.0–2.6.2; `__init__.py` injection; exfil to `whereisitat.lucyatemysuperbox.space`; SSH keys, cloud creds, Kubernetes tokens, crypto wallets; TeamPCP attribution |
 | Apr 2026 | [CanisterSprawl — pgserve npm Compromise](./attacks/2026-04-pgserve-npm-canistersprawl.md) | npm | pgserve 1.1.11–1.1.13; 1,143-line postinstall worm; RSA-4096+AES-256 encryption; ICP blockchain canister exfil (untakedownable); self-propagates to all publishable npm & PyPI packages |
@@ -78,6 +81,9 @@ Common vectors include:
 ├── CONTRIBUTING.md                  ← How to add a new attack entry
 ├── resources.md                     ← Detection tools, references, further reading
 └── attacks/
+    ├── 2026-04-elementary-data-pypi-ghcr.md
+    ├── 2026-04-bitwarden-cli-shai-hulud.md
+    ├── 2026-04-checkmarx-kics-docker-vscode.md
     ├── 2026-04-gpt-proxy-kube-health-backdoor.md
     ├── 2026-04-xinference-pypi-teampcp.md
     ├── 2026-04-pgserve-npm-canistersprawl.md
