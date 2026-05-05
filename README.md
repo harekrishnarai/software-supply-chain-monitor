@@ -20,6 +20,11 @@ Common vectors include:
 
 | Date | Name | Ecosystem | Impact |
 |------|------|-----------|--------|
+| Apr 2026 | [GenAI Chrome Extension RAT Campaign — 18 Malicious AI Extensions Exfiltrate Developer Secrets](./attacks/2026-04-genai-chrome-extension-campaign.md) | Chrome Web Store | 18 malicious extensions (95K+ users): MCP-themed RAT with remote JS exec, Gmail AitB exfiltration, Claude/OpenAI/Gemini API key theft, persistent cross-device search hijacker, PAC-script proxy spyware; AI-generated malware code detected |
+| Apr 2026 | [Mini Shai-Hulud Expands to PHP — intercom/intercom-php@5.0.2 Packagist Compromise](./attacks/2026-04-intercom-php-packagist.md) | Packagist / Composer (PHP) | Same-day cross-ecosystem blitz with lightning PyPI + intercom-client npm; Composer plugin injection executes Bun + router_runtime.js at install time; GitHub tokens, SSH keys, cloud creds exfil to zero.masscan.cloud; first Mini Shai-Hulud expansion into PHP ecosystem |
+| Apr 2026 | [Mini Shai-Hulud Wave — SAP npm Packages + intercom-client Multi-Cloud Worm](./attacks/2026-04-mini-shai-hulud-sap-npm.md) | npm | mbt@1.2.48 + 3 @cap-js packages; CircleCI PR steals CLOUD_MTA_BOT_NPM_TOKEN; OIDC publishing abuse; 29h later intercom-client@7.0.4 (361K DLs) compromised; Bun v1.3.13 loader + 11.7MB execution.js/router_runtime.js; AWS/GCP/Azure/K8s credential sweep; AI agent persistence via .claude/settings.json + .vscode/tasks.json; propagation via OhNoWhatsGoingOnWithGitHub dead-drop |
+| Apr 2026 | [lightning (PyTorch Lightning) PyPI Compromise — Mini Shai-Hulud in AI/ML Ecosystem](./attacks/2026-04-lightning-pypi-shai-hulud.md) | PyPI | lightning 2.6.2 & 2.6.3; import-time daemon thread (bypasses --ignore-scripts); hidden _runtime/router_runtime.js; steals GPU cluster creds, HuggingFace/W&B tokens, cloud IAM; npm tarball poisoning for cross-ecosystem spread; GitHub account compromise used to suppress disclosure |
+| Apr 2026 | [Fake tanstack npm — .env File Exfiltration via Svix Webhook Relay](./attacks/2026-04-fake-tanstack-npm.md) | npm | 4 versions in 27 minutes (2.0.4–2.0.7); postinstall sweeps all .env* files; exfil via legitimate Svix webhook relay; live attacker iteration; ~19K monthly downloads; name-squatting on @tanstack org |
 | Apr 2026 | [elementary-data PyPI & GHCR Compromise — GitHub Actions Script Injection Forges Signed Release](./attacks/2026-04-elementary-data-pypi-ghcr.md) | PyPI / GHCR / GitHub Actions | `elementary-data==0.23.3` + `:latest` GHCR image; PR comment script injection → GITHUB_TOKEN abuse → forged signed release commit; `.pth` fires on every Python invocation; 3-stage XOR credential harvester; AWS Secrets Manager live API exfil; C2 `skyhanni.cloud` |
 | Apr 2026 | [Bitwarden CLI Shai-Hulud Third Coming — MCP-Aware Credential Worm via Compromised CI/CD](./attacks/2026-04-bitwarden-cli-shai-hulud.md) | npm | `@bitwarden/cli@2026.4.0`; CI/CD pipeline compromise bypasses trusted publishing; steals Claude Code auth tokens + MCP server configs; cloud secret manager harvest; Shai-Hulud worm propagation; same TeamPCP C2 as Checkmarx KICS Docker attack |
 | Apr 2026 | [Checkmarx KICS Second Compromise — Docker Hub Images, VS Code Extensions, GitHub Actions Worm](./attacks/2026-04-checkmarx-kics-docker-vscode.md) | Docker Hub / VS Code / GitHub Actions / npm | TeamPCP's second Checkmarx attack; malicious KICS images exfiltrate IaC scan secrets; mcpAddon.js via backdated orphaned GitHub commit; GitHub Actions `toJSON(secrets)` heist; npm worm propagation; ~84-min Docker exposure window |
@@ -81,6 +86,11 @@ Common vectors include:
 ├── CONTRIBUTING.md                  ← How to add a new attack entry
 ├── resources.md                     ← Detection tools, references, further reading
 └── attacks/
+    ├── 2026-04-genai-chrome-extension-campaign.md
+    ├── 2026-04-intercom-php-packagist.md
+    ├── 2026-04-mini-shai-hulud-sap-npm.md
+    ├── 2026-04-lightning-pypi-shai-hulud.md
+    ├── 2026-04-fake-tanstack-npm.md
     ├── 2026-04-elementary-data-pypi-ghcr.md
     ├── 2026-04-bitwarden-cli-shai-hulud.md
     ├── 2026-04-checkmarx-kics-docker-vscode.md
