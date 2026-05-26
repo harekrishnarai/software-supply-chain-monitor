@@ -20,6 +20,16 @@ Common vectors include:
 
 | Date | Name | Ecosystem | Impact |
 |------|------|-----------|--------|
+| May 2026 | [Laravel-Lang Supply Chain Attack — 4 Composer Packages, Every Tag Rewritten, PHP 2-Stage Credential Stealer](./attacks/2026-05-laravel-lang-packagist.md) | Packagist / Composer (PHP) | All 502+ tags across laravel-lang/lang, http-statuses, actions, attributes force-pushed to malicious commits; autoload.files hijack fires on boot; 5,900-line PHP stealer targets cloud creds, browser passwords, crypto wallets, VPNs; AES-256 exfil to flipboxstudio.info |
+| May 2026 | [Megalodon — Mass GitHub Actions d-PPE Campaign Backdoors 5,561 Repositories](./attacks/2026-05-megalodon-github-actions.md) | GitHub Actions / npm | 5,561 repos backdoored in 6 hours via direct push to unprotected default branches; SysDiag/Optimize-Build workflow names; OIDC + cloud + SSH + npm token theft; @tiledesk/tiledesk-server v2.18.6–2.18.12 poisoned on npm; C2 216.126.225.129:8443 |
+| May 2026 | [Nx Console VS Code Extension Compromised — Orphan Commit Dropper, Sigstore Forgery & GitHub Breach](./attacks/2026-05-nx-console-vscode.md) | VS Code Marketplace / npm / GitHub | nrwl.angular-console v18.95.0 (2.2M installs); 11-min exposure; stolen contributor token; orphan commit payload; 8-stage attack incl. Sigstore forgery + Python C2 backdoor; linked to exfiltration of 3,800 GitHub internal repos |
+| May 2026 | [Microsoft durabletask PyPI Compromise — TeamPCP rope.pyz Modular Cloud Intrusion Framework](./attacks/2026-05-durabletask-pypi.md) | PyPI | 3 malicious versions (1.4.1–1.4.3) of Microsoft's Azure Durable Functions SDK (400K monthly DLs); 28KB rope.pyz with 7 parallel cloud collectors; AWS SSM + K8s lateral movement; geotargeted rm -rf wiper; TeamPCP t.m-kosche.com C2 |
+| May 2026 | [Mini Shai-Hulud Wave 4 — AntV/atool npm Account Compromise, 323 Packages, Runner Memory Scraping](./attacks/2026-05-antv-npm-shai-hulud.md) | npm | 323 packages across @antv, timeago.js (1.5M DLs), echarts-for-react, jest-canvas-mock; optionalDependencies git ref bypasses static analysis; Runner.Worker memory scraping; 2,500+ exfil repos created; Claude Code + VS Code persistence backdoors; TeamPCP t.m-kosche.com C2 |
+| May 2026 | [actions-cool/issues-helper GitHub Action Compromised — All 53 Tags Moved to Imposter Commits](./attacks/2026-05-actions-cool-issues-helper.md) | GitHub Actions | 53 tags + 15 tags (maintain-one-comment) moved to imposter commits in <4 min; Bun + Runner.Worker memory scraping; t.m-kosche.com exfil; TeamPCP attribution; simultaneous with @antv + durabletask attacks |
+| May 2026 | [node-ipc npm Infostealer — DNS-Exfiltration Credential Stealer](./attacks/2026-05-node-ipc-npm-infostealer.md) | npm | 3 malicious versions (9.1.6, 9.2.3, 12.0.1); ~2h exposure; DNS-only exfiltration to bt.node.js; targets cloud creds, SSH, AI tools (Claude, Kiro), Salesforce, M365; no disk persistence post-exfil |
+| May 2026 | [Mini Shai-Hulud Wave 3 — TanStack + Multi-Namespace npm Worm (TeamPCP)](./attacks/2026-05-mini-shai-hulud-tanstack-npm.md) | npm / PyPI | 373 malicious package-versions across 169 npm names + 2 PyPI packages; @tanstack/react-router (~12M weekly DLs), @uipath, @mistralai, @squawk compromised; Pwn Request + cache poisoning + OIDC extraction; Session network exfil (takedown-resistant); gh-token-monitor persistence daemon; cross-ecosystem npm→PyPI worm propagation |
+| May 2026 | [QLNX — Quasar Linux RAT Targets Developer Workstations to Enable Supply Chain Compromise](./attacks/2026-05-qlnx-quasar-linux-rat.md) | Linux Developer Environments | Full-featured Linux RAT (58-command C2, dual LD_PRELOAD+eBPF rootkit, PAM backdoor with master password, 7 persistence mechanisms); harvests npm/PyPI publish tokens + cloud creds to enable downstream package poisoning; only 4/70+ AV detections at disclosure |
+| May 2026 | [CVE-2026-31431 "Copy Fail" — Linux Kernel LPE Breaks CI/CD Pipelines and Kubernetes Containers](./attacks/2026-05-cve-2026-31431-copy-fail.md) | Linux / Kubernetes / CI/CD | Deterministic LPE in Linux kernels 4.14–6.19.12; 732-byte Python PoC; container escape on all major distros since 2017; shared CI/CD runners fully compromised; preliminary wild exploitation observed |
 | Apr 2026 | [GenAI Chrome Extension RAT Campaign — 18 Malicious AI Extensions Exfiltrate Developer Secrets](./attacks/2026-04-genai-chrome-extension-campaign.md) | Chrome Web Store | 18 malicious extensions (95K+ users): MCP-themed RAT with remote JS exec, Gmail AitB exfiltration, Claude/OpenAI/Gemini API key theft, persistent cross-device search hijacker, PAC-script proxy spyware; AI-generated malware code detected |
 | Apr 2026 | [Mini Shai-Hulud Expands to PHP — intercom/intercom-php@5.0.2 Packagist Compromise](./attacks/2026-04-intercom-php-packagist.md) | Packagist / Composer (PHP) | Same-day cross-ecosystem blitz with lightning PyPI + intercom-client npm; Composer plugin injection executes Bun + router_runtime.js at install time; GitHub tokens, SSH keys, cloud creds exfil to zero.masscan.cloud; first Mini Shai-Hulud expansion into PHP ecosystem |
 | Apr 2026 | [Mini Shai-Hulud Wave — SAP npm Packages + intercom-client Multi-Cloud Worm](./attacks/2026-04-mini-shai-hulud-sap-npm.md) | npm | mbt@1.2.48 + 3 @cap-js packages; CircleCI PR steals CLOUD_MTA_BOT_NPM_TOKEN; OIDC publishing abuse; 29h later intercom-client@7.0.4 (361K DLs) compromised; Bun v1.3.13 loader + 11.7MB execution.js/router_runtime.js; AWS/GCP/Azure/K8s credential sweep; AI agent persistence via .claude/settings.json + .vscode/tasks.json; propagation via OhNoWhatsGoingOnWithGitHub dead-drop |
@@ -86,6 +96,16 @@ Common vectors include:
 ├── CONTRIBUTING.md                  ← How to add a new attack entry
 ├── resources.md                     ← Detection tools, references, further reading
 └── attacks/
+    ├── 2026-05-laravel-lang-packagist.md
+    ├── 2026-05-megalodon-github-actions.md
+    ├── 2026-05-nx-console-vscode.md
+    ├── 2026-05-durabletask-pypi.md
+    ├── 2026-05-antv-npm-shai-hulud.md
+    ├── 2026-05-actions-cool-issues-helper.md
+    ├── 2026-05-node-ipc-npm-infostealer.md
+    ├── 2026-05-mini-shai-hulud-tanstack-npm.md
+    ├── 2026-05-qlnx-quasar-linux-rat.md
+    ├── 2026-05-cve-2026-31431-copy-fail.md
     ├── 2026-04-genai-chrome-extension-campaign.md
     ├── 2026-04-intercom-php-packagist.md
     ├── 2026-04-mini-shai-hulud-sap-npm.md
