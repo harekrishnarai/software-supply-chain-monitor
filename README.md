@@ -20,6 +20,16 @@ Common vectors include:
 
 | Date | Name | Ecosystem | Impact |
 |------|------|-----------|--------|
+| Jun 2026 | [Mastra npm Supply Chain Attack — 141 Packages Backdoored via easy-day-js Typosquat](./attacks/2026-06-mastra-npm-easy-day-js.md) | npm | 141 @mastra packages (incl. @mastra/core, 918K weekly DLs) republished with malicious easy-day-js dependency; caret semver resolves to malicious v1.11.22; detached RAT targets 160+ browser crypto wallets; same Hostwinds VPS C2 as axios compromise; dropper self-deletes |
+| Jun 2026 | [JetBrains IDE Plugin Campaign — 15 Malicious AI Coding Plugins Steal API Keys from 70,000 Developers](./attacks/2026-06-jetbrains-ai-key-theft.md) | JetBrains Marketplace | 15 plugins under 7 vendor accounts; 8-month campaign (Oct 2025–Jun 2026); steals OpenAI/DeepSeek/SiliconFlow API keys on Apply click; C2 39.107.60.51 over plain HTTP; dual-revenue: harvests keys from free users, resells to paying users |
+| Jun 2026 | [Atomic Arch — 400+ AUR Packages Hijacked via Orphan Adoption, Rust Credential Stealer with eBPF Persistence](./attacks/2026-06-aur-atomic-arch.md) | AUR (Arch User Repository) / Linux | 400+ orphaned AUR packages adopted and modified to run npm install atomic-lockfile; Rust credential stealer targets SSH keys, GitHub/npm tokens, browser sessions, cloud keys; eBPF-based rootkit persistence on privileged systems; affects Arch-based CI runners and developer laptops |
+| Jun 2026 | [onering Rust Crate Compromise — build.rs Injects Source Code Exfiltration via Sentry Disguise](./attacks/2026-06-onering-rust-code-exfil.md) | Rust / crates.io | onering@1.4.1; malicious build.rs walks to consumer project root and runs git diff HEAD^ HEAD on every cargo build; exfiltrates full source code diffs disguised as Sentry telemetry; GitHub repository also compromised; 18K+ downloads |
+| Jun 2026 | [Miasma v2 — Self-Spreading npm Worm Uses binding.gyp Execution Bypass to Compromise 57 Packages](./attacks/2026-06-miasma-v2-binding-gyp.md) | npm | 57 packages / 286+ malicious versions; binding.gyp command-substitution bypasses npm v12 lifecycle-script blocking; /proc/*/mem runner memory scraping; AI assistant config poisoning (.claude, .cursor, .gemini, .vscode); forged provenance attestations; GitHub repo exfil with beacon "thebeautifulmarchoftime" |
+| Jun 2026 | [Miasma — Red Hat @redhat-cloud-services npm Packages Compromised via CI/CD Account Takeover](./attacks/2026-06-miasma-redhat-npm.md) | npm | 32 packages, 96 malicious versions, ~80–117K weekly downloads; compromised Red Hat employee account pushes orphan commits with OIDC publish workflows; Mini Shai-Hulud derivative with new GCP/Azure identity enumeration and per-infection encrypted payload; 16-account GitHub C2 pool; Claude Code + VS Code persistence; bypass_2fa worm propagation |
+| May 2026 | [TrapDoor — Cross-Ecosystem Credential Stealer Targets npm, PyPI, and Crates.io with AI Assistant Poisoning](./attacks/2026-05-trapdoor-npm-pypi-crates.md) | npm / PyPI / Crates.io | 34+ malicious packages, 384+ versions; first significant Crates.io supply chain campaign; novel AI assistant poisoning via .cursorrules/CLAUDE.md; active AWS/GitHub credential validation; XOR-encrypted Rust keystore exfil to GitHub Gists; ddjidd564 attacker opens PRs to LangChain, LlamaIndex, browser-use |
+| May 2026 | [Coruna Respawned — Compromised art-template npm Package Delivers iOS Browser Exploit Kit](./attacks/2026-05-art-template-coruna-ios-exploit.md) | npm (browser bundle) | Maintainer account transfer attack; 3 malicious versions inject Coruna-like iOS Safari exploit framework into browser bundle; 5 WebKit exploit chains covering iOS 11.0–17.2; CVE-2024-23222; WASM fingerprinting; attributed to UNC6691 (Chinese financially-motivated APT) |
+| May 2026 | [JINX-0164 — Financially Motivated Threat Actor Targets Crypto Developer Infrastructure via Social Engineering + Supply Chain](./attacks/2026-05-jinx-0164-crypto-supply-chain.md) | npm / macOS / GitHub / CI/CD | New Wiz-tracked actor active since mid-2025; LinkedIn social engineering → AUDIOFIX Python RAT (51 crypto wallets, full dev creds, clipboard monitoring) → CI/CD secret exfil via nord-stream → internal repo injection for lateral movement; @velora-dex/sdk@4.9.1 supply chain op; C2 datahub.ink |
+| May 2026 | [codexui-android — Trojanised npm Package Silently Exfiltrates OpenAI Codex Auth Tokens](./attacks/2026-05-codexui-android-npm-infostealer.md) | npm / Android (Google Play) | 27K weekly downloads; legitimate-looking Codex remote UI; malicious chunk executes on every startup; XOR-encrypted exfil to sentry.anyclaw.store; non-expiring refresh_token stolen; also delivered via two Google Play Android apps (unpinned @latest bootstrap) |
 | May 2026 | [Laravel-Lang Supply Chain Attack — 4 Composer Packages, Every Tag Rewritten, PHP 2-Stage Credential Stealer](./attacks/2026-05-laravel-lang-packagist.md) | Packagist / Composer (PHP) | All 502+ tags across laravel-lang/lang, http-statuses, actions, attributes force-pushed to malicious commits; autoload.files hijack fires on boot; 5,900-line PHP stealer targets cloud creds, browser passwords, crypto wallets, VPNs; AES-256 exfil to flipboxstudio.info |
 | May 2026 | [Megalodon — Mass GitHub Actions d-PPE Campaign Backdoors 5,561 Repositories](./attacks/2026-05-megalodon-github-actions.md) | GitHub Actions / npm | 5,561 repos backdoored in 6 hours via direct push to unprotected default branches; SysDiag/Optimize-Build workflow names; OIDC + cloud + SSH + npm token theft; @tiledesk/tiledesk-server v2.18.6–2.18.12 poisoned on npm; C2 216.126.225.129:8443 |
 | May 2026 | [Nx Console VS Code Extension Compromised — Orphan Commit Dropper, Sigstore Forgery & GitHub Breach](./attacks/2026-05-nx-console-vscode.md) | VS Code Marketplace / npm / GitHub | nrwl.angular-console v18.95.0 (2.2M installs); 11-min exposure; stolen contributor token; orphan commit payload; 8-stage attack incl. Sigstore forgery + Python C2 backdoor; linked to exfiltration of 3,800 GitHub internal repos |
@@ -63,6 +73,7 @@ Common vectors include:
 | Mar 2026 | [kubernetes-el Pwn Request](./attacks/2026-03-kubernetes-el.md) | GitHub Actions / Emacs | GITHUB_TOKEN stolen; rm -rf / destructive payload; removed from MELPA |
 | Mar 2026 | [Trivy GitHub Actions Tag Compromise](./attacks/2026-03-trivy-github-actions.md) | GitHub Actions | CI/CD secret theft via 75 poisoned version tags; 45 repos confirmed impacted |
 | Mar 2026 | [GlassWorm / CanisterWorm](./attacks/2026-03-glassworm-canisterworm.md) | npm, GitHub, OpenVSX | Browser RAT, crypto theft, Solana C2; 45 packages in <60 sec |
+| Feb 2026 | [Notepad++ Supply Chain Attack — Lotus Blossom APT Hijacks Update Mechanism to Deliver Chrysalis Backdoor](./attacks/2026-02-notepadplusplus-supply-chain.md) | Windows / Notepad++ WinGUP | Lotus Blossom (China, CL-STA-0062) compromises update infrastructure Jul–Oct 2025; selective per-victim poisoning; 3 simultaneous infection chains; Chrysalis backdoor + Cobalt Strike; targets sysadmins, DevOps in energy/finance/govt/telecom sectors across SE Asia, South America, US, Europe |
 | Feb 2026 | [npm Gambling Backdoor — json-bigint Typosquats with Payment & Outcome Manipulation](./attacks/2026-02-npm-gambling-backdoor.md) | npm | json-bigint-extend/jsonfx/jsonfb typosquats; env-gated activation; Express payment route injection; fixflow gambling outcome manipulator; 30s remote riskCode refresh; Chinese-language RAT panel |
 | Feb 2026 | [Cline Supply Chain Attack — cline@2.3.0 Installs OpenClaw](./attacks/2026-02-cline-openclaw.md) | npm | Unauthorized publish; malicious postinstall silently deploys persistent AI agent daemon; ~4K downloads in ~8h |
 | Feb 2026 | [hackerbot-claw AI Attack Campaign](./attacks/2026-02-hackerbot-claw.md) | GitHub Actions | AI-powered bot; RCE in 6/7 targets; full Trivy repo takeover + releases deleted |
@@ -96,6 +107,16 @@ Common vectors include:
 ├── CONTRIBUTING.md                  ← How to add a new attack entry
 ├── resources.md                     ← Detection tools, references, further reading
 └── attacks/
+    ├── 2026-06-mastra-npm-easy-day-js.md
+    ├── 2026-06-jetbrains-ai-key-theft.md
+    ├── 2026-06-aur-atomic-arch.md
+    ├── 2026-06-onering-rust-code-exfil.md
+    ├── 2026-06-miasma-v2-binding-gyp.md
+    ├── 2026-06-miasma-redhat-npm.md
+    ├── 2026-05-trapdoor-npm-pypi-crates.md
+    ├── 2026-05-art-template-coruna-ios-exploit.md
+    ├── 2026-05-jinx-0164-crypto-supply-chain.md
+    ├── 2026-05-codexui-android-npm-infostealer.md
     ├── 2026-05-laravel-lang-packagist.md
     ├── 2026-05-megalodon-github-actions.md
     ├── 2026-05-nx-console-vscode.md
@@ -139,6 +160,7 @@ Common vectors include:
     ├── 2026-03-kubernetes-el.md
     ├── 2026-03-trivy-github-actions.md
     ├── 2026-03-glassworm-canisterworm.md
+    ├── 2026-02-notepadplusplus-supply-chain.md
     ├── 2026-02-npm-gambling-backdoor.md
     ├── 2026-02-cline-openclaw.md
     ├── 2026-02-hackerbot-claw.md
